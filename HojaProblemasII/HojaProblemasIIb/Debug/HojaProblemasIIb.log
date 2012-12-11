@@ -1,0 +1,15 @@
+﻿Build started 06/11/2012 19:35:30.
+     1>Project "D:\Master Vision Artificial\HSTI\Projects\HojaProblemasII\HojaProblemasIIb\HojaProblemasIIb.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\HojaProblemasIIb.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Master Vision Artificial\HSTI\Projects\HojaProblemasII\Debug\HojaProblemasIIb.exe" /NOLOGO /LIBPATH:"D:\Master Vision Artificial\HSTI\opencv\build\x64\vc10\lib" opencv_imgproc242.lib opencv_core242d.lib opencv_highgui242d.lib /MANIFEST /ManifestFile:"Debug\HojaProblemasIIb.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Master Vision Artificial\HSTI\Projects\HojaProblemasII\Debug\HojaProblemasIIb.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Master Vision Artificial\HSTI\Projects\HojaProblemasII\Debug\HojaProblemasIIb.lib" /MACHINE:X86 Debug\Ejercicio4.obj
+         Debug\HelloWorld.obj
+     1>opencv_highgui242d.lib(opencv_highgui242d.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'X86'
+     1>Done Building Project "D:\Master Vision Artificial\HSTI\Projects\HojaProblemasII\HojaProblemasIIb\HojaProblemasIIb.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.17

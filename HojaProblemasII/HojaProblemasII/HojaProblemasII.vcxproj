@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -45,8 +45,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -80,10 +79,16 @@
     <ClCompile Include="dft.cpp" />
     <ClCompile Include="Ejercicio1.cpp" />
     <ClCompile Include="Ejercicio2.cpp" />
-    <ClCompile Include="Ejercicio4.cpp" />
     <ClCompile Include="Ejercicio5.cpp" />
-    <ClCompile Include="HelloWorld.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header Files\Ejecicio5.h" />
+    <ClInclude Include="Header Files\Global.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\lineas5.tif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

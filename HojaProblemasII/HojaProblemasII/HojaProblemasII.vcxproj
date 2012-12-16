@@ -76,12 +76,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dft.cpp" />
-    <ClCompile Include="Ejercicio1.cpp" />
-    <ClCompile Include="Ejercicio2.cpp" />
-    <ClCompile Include="Ejercicio5.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="ProblemasEvaluables\dft.cpp" />
+    <ClCompile Include="ProblemasEvaluables\Ejercicio1.cpp" />
+    <ClCompile Include="ProblemasEvaluables\Ejercicio2.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio4.cpp" />
+    <ClCompile Include="ProblemasEvaluables\Ejercicio5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\Ejecicio5.h" />

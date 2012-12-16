@@ -6,12 +6,9 @@ Mat Global::openImage(const char*  sImageFile){
 	const char* filename = "..\\Images\\lineas5.jpg";			
 	
 	Mat src;
-	try
-	{
-		src = imread(filename);
-	}
-	catch(Exception ex)
-	{		
+	
+	src = imread(filename);
+	if( src.empty()){
 		filename = sImageFile;
 		src = imread(filename);
 	}

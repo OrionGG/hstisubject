@@ -1,5 +1,5 @@
 #include <math.h>
-#include "Header Files\Global.h"
+#include "..\Header Files\Global.h"
 
 
 using namespace cv;
@@ -8,15 +8,13 @@ using namespace cv;
 
 int main( int argc, char** argv )
 {
+	
    Mat src, dst, color_dst;
    
    const char* filename = argc >=2 ? argv[1]:"";
    src = Global::openImage(filename);
 
-    if( src.empty())
-        return -1;
-
-	Canny( src, dst, 50, 200, 3 );
+    Canny( src, dst, 50, 200, 3 );
     cvtColor( dst, color_dst, CV_GRAY2BGR );
 
 #if 1

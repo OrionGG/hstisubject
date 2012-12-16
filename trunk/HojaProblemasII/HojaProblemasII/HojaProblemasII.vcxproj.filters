@@ -21,23 +21,23 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProblemasEvaluables\dft.cpp">
+      <Filter>Source Files\ProblemasEvaluables</Filter>
+    </ClCompile>
+    <ClCompile Include="ProblemasEvaluables\Ejercicio1.cpp">
+      <Filter>Source Files\ProblemasEvaluables</Filter>
+    </ClCompile>
+    <ClCompile Include="ProblemasEvaluables\Ejercicio2.cpp">
+      <Filter>Source Files\ProblemasEvaluables</Filter>
+    </ClCompile>
     <ClCompile Include="ProblemasEvaluables\Ejercicio4.cpp">
       <Filter>Source Files\ProblemasEvaluables</Filter>
     </ClCompile>
-    <ClCompile Include="Ejercicio2.cpp">
+    <ClCompile Include="ProblemasEvaluables\Ejercicio5.cpp">
       <Filter>Source Files\ProblemasEvaluables</Filter>
-    </ClCompile>
-    <ClCompile Include="dft.cpp">
-      <Filter>Source Files\ProblemasEvaluables</Filter>
-    </ClCompile>
-    <ClCompile Include="Ejercicio5.cpp">
-      <Filter>Source Files\ProblemasEvaluables</Filter>
-    </ClCompile>
-    <ClCompile Include="Ejercicio1.cpp">
-      <Filter>Source Files\ProblemasEvaluables</Filter>
-    </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

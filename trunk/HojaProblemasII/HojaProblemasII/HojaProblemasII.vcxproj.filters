@@ -16,9 +16,6 @@
     <Filter Include="Source Files\ProblemasEvaluables">
       <UniqueIdentifier>{fd39cb1d-6eb9-4e3e-822e-9eb60fcd0c5a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Images">
-      <UniqueIdentifier>{1aed16c2-c06a-408a-a05a-dd4094d8b0aa}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Global.cpp">
@@ -47,10 +44,5 @@
     <ClInclude Include="Header Files\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\lineas5.tif">
-      <Filter>Images</Filter>
-    </None>
   </ItemGroup>
 </Project>

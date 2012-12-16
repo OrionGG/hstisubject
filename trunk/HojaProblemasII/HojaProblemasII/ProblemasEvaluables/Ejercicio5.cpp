@@ -9,15 +9,14 @@ using namespace cv;
 int main( int argc, char** argv )
 {
 	
-   Mat src, dst, color_dst;
+   Mat src, dst, line_dst, cicle_dst;
    
    const char* filename = argc >=2 ? argv[1]:"";
    src = Global::openImage(filename);
 
     Canny( src, dst, 50, 200, 3 );
-    cvtColor( dst, color_dst, CV_GRAY2BGR );
+    cvtColor( dst, line_dst, CV_GRAY2BGR );
 
-#if 1
     vector<Vec2f> lines;
     HoughLines( dst, lines, 1, CV_PI/180, 100 );
 
@@ -31,22 +30,41 @@ int main( int argc, char** argv )
                   cvRound(y0 + 1000*(a)));
         Point pt2(cvRound(x0 - 1000*(-b)),
                   cvRound(y0 - 1000*(a)));
-        line( color_dst, pt1, pt2, Scalar(0,0,255), 3, 8 );
+        line( line_dst, pt1, pt2, Scalar(0,0,255), 3, 8 );
     }
-#else
-    vector<Vec4i> lines;
-    HoughLinesP( dst, lines, 1, CV_PI/180, 80, 30, 10 );
-    for( size_t i = 0; i < lines.size(); i++ )
-    {
-        line( color_dst, Point(lines[i][0], lines[i][1]),
-            Point(lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
-    }
-#endif
+
+	
+	/// Convert it to gray
+	cvtColor( src, cicle_dst, CV_BGR2GRAY );
+
+	/// Reduce the noise so we avoid false circle detection
+	//GaussianBlur( cicle_dst, cicle_dst, Size(9, 9), 2, 2 );
+
+	vector<Vec3f> circles;
+
+	/// Apply the Hough Transform to find the circles
+	HoughCircles(cicle_dst, circles, CV_HOUGH_GRADIENT, 1, dst.rows/8, 200, 100, 0, 0 );
+
+	/// Draw the circles detected
+	for( size_t i = 0; i < circles.size(); i++ )
+	{
+		Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+		int radius = cvRound(circles[i][2]);
+		// circle center
+		circle( cicle_dst, center, 3, Scalar(0,255,0), -1, 8, 0 );
+		// circle outline
+		circle( cicle_dst, center, radius, Scalar(0,0,255), 3, 8, 0 );
+	}
+
     namedWindow( "Source", 1 );
     imshow( "Source", src );
 
     namedWindow( "Detected Lines", 1 );
-    imshow( "Detected Lines", color_dst );
+    imshow( "Detected Lines", line_dst );
+
+
+	namedWindow( "Hough Circle Transform Demo", CV_WINDOW_AUTOSIZE );
+	imshow( "Hough Circle Transform Demo", cicle_dst );
 
     waitKey(0);
     return 0;

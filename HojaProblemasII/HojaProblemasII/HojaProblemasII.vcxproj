@@ -87,9 +87,6 @@
     <ClInclude Include="Header Files\Ejecicio5.h" />
     <ClInclude Include="Header Files\Global.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\lineas5.tif" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

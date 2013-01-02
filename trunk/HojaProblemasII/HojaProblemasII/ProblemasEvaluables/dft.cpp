@@ -7,7 +7,7 @@
 using namespace cv;
 using namespace std;
 
-int maind(int argc, char ** argv)
+int run(int argc, char ** argv)
 {
 
     const char* filename = argc >=2 ? argv[1] : "lena.jpg";

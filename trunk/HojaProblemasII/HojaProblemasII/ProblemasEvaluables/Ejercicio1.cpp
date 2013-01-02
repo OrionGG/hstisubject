@@ -1,31 +1,27 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include <opencv2/opencv.hpp>
-#include <ctime>
-#include <iostream>
-
-using namespace cv;
-using namespace std;
+#include "..\Header Files\Ejercicio1.h"
 
 
-int main1( int argc, char** argv )
+
+bool Ejercicio1::run(const char* filename)
 {
-	Mat mKernelA;
-	mKernelA.push_back((double) 1/16);
-	mKernelA.push_back((double) 2/16);
-	mKernelA.push_back((double) 1/16);
-	mKernelA.push_back((double) 2/16);
-	mKernelA.push_back((double) 4/16);
-	mKernelA.push_back((double) 2/16);
-	mKernelA.push_back((double) 1/16);
-	mKernelA.push_back((double) 2/16);
-	mKernelA.push_back((double) 1/16);
+	bool bResult = false;
+
 
 	Mat image;
-	image = imread(argv[1]);
+	image = imread(filename);
 	Mat oOutputArrayA;
 
+	
+	Mat mKernelA(3, 3, CV_64F);
+	mKernelA.row(0).col(0) = ((double) 1/16);
+	mKernelA.row(0).col(1) = ((double) 2/16);
+	mKernelA.row(0).col(2) = ((double) 1/16);
+	mKernelA.row(1).col(0) = ((double) 2/16);
+	mKernelA.row(1).col(1) = ((double) 4/16);
+	mKernelA.row(1).col(2) = ((double) 2/16);
+	mKernelA.row(2).col(0) = ((double) 1/16);
+	mKernelA.row(2).col(1) = ((double) 2/16);
+	mKernelA.row(2).col(2) = ((double) 1/16);
 
 	clock_t beginA = clock();
 	filter2D(image, oOutputArrayA, image.type() , mKernelA);	
@@ -63,5 +59,6 @@ int main1( int argc, char** argv )
 
 	cv::waitKey(0);
 	cv::destroyAllWindows();
-	return EXIT_SUCCESS;
+	
+	return bResult;
 }

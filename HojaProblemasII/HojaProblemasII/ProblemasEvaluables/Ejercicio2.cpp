@@ -1,11 +1,6 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include <opencv2/opencv.hpp>
+#include "..\Header Files\Ejercicio2.h"
 
-using namespace cv;
-
-void convolveDFT(const Mat& A, const Mat& B, Mat& C)
+void Ejercicio2::convolveDFT(const Mat& A, const Mat& B, Mat& C)
 {
     // reallocate the output array if needed
     //C.create(abs(A.rows - B.rows)+1, abs(A.cols - B.cols)+1, A.type());
@@ -49,11 +44,12 @@ void convolveDFT(const Mat& A, const Mat& B, Mat& C)
 }
 
 
-int main2( int argc, char** argv )
+bool Ejercicio2::run(const char* filename)
 {
-
+	
+	bool bResult = false;
 	Mat image;
-	image = imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+	image = imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
 	Mat oGaussianDist(image.size(), CV_8U);
 	Mat oOutputArray;
 	randn(oGaussianDist, Scalar(128), Scalar(20));; // Gaussian dist
@@ -65,5 +61,6 @@ int main2( int argc, char** argv )
 
 	cv::waitKey(0);
 	cv::destroyAllWindows();
-	return EXIT_SUCCESS;
+	
+	return bResult;
 }

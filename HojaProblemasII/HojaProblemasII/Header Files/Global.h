@@ -9,9 +9,13 @@
 using namespace cv;
 
 
+extern const char* ERROROPENFILE;
+
 class Global{
 	public:
 		static Mat openImage(const char*  sImageFile);
+		
+
 	private:
 };
 #endif

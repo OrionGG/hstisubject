@@ -36,12 +36,24 @@
     <ClCompile Include="ProblemasEvaluables\Ejercicio5.cpp">
       <Filter>Source Files\ProblemasEvaluables</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header Files\Ejecicio5.h">
+    <ClInclude Include="Header Files\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Global.h">
+    <ClInclude Include="Header Files\Ejercicio5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Ejercicio1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Ejercicio2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Ejercicio4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

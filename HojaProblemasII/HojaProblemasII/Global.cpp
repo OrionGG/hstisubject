@@ -1,17 +1,12 @@
-#include "Header Files\Global.h"
+#include ".\Header Files\Global.h"
 
+const char* ERROROPENFILE = "The file can not be open: ";
 
-
-Mat Global::openImage(const char*  sImageFile){
-	const char* filename = "..\\Images\\lineas5.jpg";			
+Mat Global::openImage(const char*  sImageFile){			
 	
-	Mat src;
+	Mat src;	
 	
-	src = imread(filename);
-	if( src.empty()){
-		filename = sImageFile;
-		src = imread(filename);
-	}
-
+	src = imread(sImageFile);
+	
 	return src;
 }

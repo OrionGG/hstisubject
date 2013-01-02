@@ -1,41 +1,49 @@
-#include <math.h>
-#include "..\Header Files\Global.h"
+#include "..\Header Files\Ejercicio5.h"
 
-
-using namespace cv;
-
-
-
-int main( int argc, char** argv )
+bool Ejercicio5::run(const char* filename )
 {
-	
-   Mat src, dst, line_dst, cicle_dst;
-   
-   const char* filename = argc >=2 ? argv[1]:"";
-   src = Global::openImage(filename);
+	bool bResult = false;
+	Mat src;
 
-    Canny( src, dst, 50, 200, 3 );
-    cvtColor( dst, line_dst, CV_GRAY2BGR );
+	src = Global::openImage(filename);
 
-    vector<Vec2f> lines;
-    HoughLines( dst, lines, 1, CV_PI/180, 100 );
+	if(!src.empty()){
+		bResult = detectLines(src);
+	}
+	else
+	{
+		cout << ERROROPENFILE << filename;
+		bResult = false;
+	}
 
-    for( size_t i = 0; i < lines.size(); i++ )
-    {
-        float rho = lines[i][0];
-        float theta = lines[i][1];
-        double a = cos(theta), b = sin(theta);
-        double x0 = a*rho, y0 = b*rho;
-        Point pt1(cvRound(x0 + 1000*(-b)),
-                  cvRound(y0 + 1000*(a)));
-        Point pt2(cvRound(x0 - 1000*(-b)),
-                  cvRound(y0 - 1000*(a)));
-        line( line_dst, pt1, pt2, Scalar(0,0,255), 3, 8 );
-    }
+	return bResult;
+}
 
-	
+bool Ejercicio5::detectLines(Mat oSrc){
+	bool bResult = false;
+	Mat dst, line_dst, cicle_dst;
+	Canny( oSrc, dst, 50, 200, 3 );
+	cvtColor( dst, line_dst, CV_GRAY2BGR );
+
+	vector<Vec2f> lines;
+	HoughLines( dst, lines, 1, CV_PI/180, 100 );
+
+	for( size_t i = 0; i < lines.size(); i++ )
+	{
+		float rho = lines[i][0];
+		float theta = lines[i][1];
+		double a = cos(theta), b = sin(theta);
+		double x0 = a*rho, y0 = b*rho;
+		Point pt1(cvRound(x0 + 1000*(-b)),
+			cvRound(y0 + 1000*(a)));
+		Point pt2(cvRound(x0 - 1000*(-b)),
+			cvRound(y0 - 1000*(a)));
+		line( line_dst, pt1, pt2, Scalar(0,0,255), 3, 8 );
+	}
+
+
 	/// Convert it to gray
-	cvtColor( src, cicle_dst, CV_BGR2GRAY );
+	cvtColor( oSrc, cicle_dst, CV_BGR2GRAY );
 
 	/// Reduce the noise so we avoid false circle detection
 	//GaussianBlur( cicle_dst, cicle_dst, Size(9, 9), 2, 2 );
@@ -56,17 +64,17 @@ int main( int argc, char** argv )
 		circle( cicle_dst, center, radius, Scalar(0,0,255), 3, 8, 0 );
 	}
 
-    namedWindow( "Source", 1 );
-    imshow( "Source", src );
+	namedWindow( "Source", 1 );
+	imshow( "Source", oSrc );
 
-    namedWindow( "Detected Lines", 1 );
-    imshow( "Detected Lines", line_dst );
+	namedWindow( "Detected Lines", 1 );
+	imshow( "Detected Lines", line_dst );
 
 
 	namedWindow( "Hough Circle Transform Demo", CV_WINDOW_AUTOSIZE );
 	imshow( "Hough Circle Transform Demo", cicle_dst );
 
-    waitKey(0);
-    return 0;
-
+	waitKey(0);
+	
+	return bResult;
 }

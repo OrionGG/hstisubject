@@ -17,6 +17,8 @@ using namespace std;
 class Ejercicio1{
 	public:
 		static bool run(const char* filename);
+		static void help();
+		static bool applyFilters(Mat oSrc);
 
 	private:
 };

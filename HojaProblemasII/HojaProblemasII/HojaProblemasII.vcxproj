@@ -79,17 +79,18 @@
   <ItemGroup>
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ProblemasEvaluables\dft.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio1.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio2.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio4.cpp" />
     <ClCompile Include="ProblemasEvaluables\Ejercicio5.cpp" />
+    <ClCompile Include="ProblemasEvaluables\Ejercicio6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\Ejercicio1.h" />
     <ClInclude Include="Header Files\Ejercicio2.h" />
     <ClInclude Include="Header Files\Ejercicio4.h" />
     <ClInclude Include="Header Files\Ejercicio5.h" />
+    <ClInclude Include="Header Files\Ejercicio6.h" />
     <ClInclude Include="Header Files\Global.h" />
   </ItemGroup>
   <ItemGroup>

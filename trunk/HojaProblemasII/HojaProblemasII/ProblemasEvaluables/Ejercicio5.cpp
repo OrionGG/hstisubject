@@ -34,19 +34,14 @@ bool Ejercicio5::detectLines(Mat oSrc){
 		float theta = lines[i][1];
 		double a = cos(theta), b = sin(theta);
 		double x0 = a*rho, y0 = b*rho;
-		Point pt1(cvRound(x0 + 1000*(-b)),
-			cvRound(y0 + 1000*(a)));
-		Point pt2(cvRound(x0 - 1000*(-b)),
-			cvRound(y0 - 1000*(a)));
-		line( line_dst, pt1, pt2, Scalar(0,0,255), 3, 8 );
+		Point p1(cvRound(x0 + 1000*(-b)), cvRound(y0 + 1000*(a)));
+		Point p2(cvRound(x0 - 1000*(-b)), cvRound(y0 - 1000*(a)));
+		line( line_dst, p1, p2, Scalar(0,0,255), 3, 8 );
 	}
 
 
 	/// Convert it to gray
 	cvtColor( oSrc, cicle_dst, CV_BGR2GRAY );
-
-	/// Reduce the noise so we avoid false circle detection
-	//GaussianBlur( cicle_dst, cicle_dst, Size(9, 9), 2, 2 );
 
 	vector<Vec3f> circles;
 

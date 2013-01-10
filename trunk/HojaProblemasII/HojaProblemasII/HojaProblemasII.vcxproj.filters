@@ -21,9 +21,6 @@
     <ClCompile Include="Global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProblemasEvaluables\dft.cpp">
-      <Filter>Source Files\ProblemasEvaluables</Filter>
-    </ClCompile>
     <ClCompile Include="ProblemasEvaluables\Ejercicio1.cpp">
       <Filter>Source Files\ProblemasEvaluables</Filter>
     </ClCompile>
@@ -38,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProblemasEvaluables\Ejercicio6.cpp">
+      <Filter>Source Files\ProblemasEvaluables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\Ejercicio4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Ejercicio6.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

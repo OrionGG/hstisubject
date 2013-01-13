@@ -56,17 +56,9 @@ bool Ejercicio4::applyIntegral(Mat image){
 	cv::namedWindow( "Integral Image", CV_WINDOW_AUTOSIZE );
 	cv::imshow( "Integral Image", integralImage );	
 
-	double max;
-	minMaxIdx(image, 0, &max);
    
 	Mat oIntegralMean(image.rows, image.cols, image.type());	//image.type()); //
-	int iMinRow = -1;
-	int iMinCol = -1;
-	int iMaxRow = -1;
-	int iMaxCol = -1;
 
-	int iMaxValue = 0;
-	int iMinValue = 255;
 	for(int iRow = 1; iRow < oIntegralMean.rows-1; iRow++){
 		for(int iCol = 1; iCol < oIntegralMean.cols-1; iCol++){
 			int a = getMatValue(integralImage, iRow-1, iCol-1);

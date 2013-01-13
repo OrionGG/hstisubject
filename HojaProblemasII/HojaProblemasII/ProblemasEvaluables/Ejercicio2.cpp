@@ -41,7 +41,11 @@ bool Ejercicio2::calculateDFT(Mat image){
 
 	Mat oOutputArray;
 
+	clock_t beginA = clock();	
 	Conv2ByFFT(image, oGaussianDist, oOutputArray);
+	clock_t endA = clock();
+	double elapsed_secsA = double(endA - beginA) / CLOCKS_PER_SEC;
+	cout <<"Time: " << elapsed_secsA << endl;
 	
 	cv::namedWindow( "Ejecicio2", CV_WINDOW_AUTOSIZE);
 	cv::imshow( "Ejecicio2", oOutputArray);

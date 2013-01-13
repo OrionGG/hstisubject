@@ -3,11 +3,12 @@
 #include ".\Header Files\Ejercicio4.h"
 #include ".\Header Files\Ejercicio5.h"
 #include ".\Header Files\Ejercicio6.h"
+#include <cstdlib>
 
 void help()
 {
     cout << "Usage: \n"
-            "   ./HojaProblemasII [Ejercicio1 [filepath]] [Ejercico2 [filepath]] [Ejercicio4 [filepath]] [Ejercicio5 [filepath]] [Ejercicio6 [filepath] []]\n";
+            "   ./HojaProblemasII [Ejercicio1 [filepath]] [Ejercico2 [filepath]] [Ejercicio4 [filepath]] [Ejercicio5 [filepath]] [Ejercicio6 [Directorypath] [camera number/filepath]]\n";
 }
 
 vector<int> getEjerciciosToRun(int argc, char** argv){
@@ -59,8 +60,8 @@ int main( int argc, char** argv ){
 
 			}
 			else if (sSelectedEjercicio == "Ejercicio6"){
-				if(argc > iParam){
-					Ejercicio6::run(argv[iParam+1]);
+				if(argc > iParam + 1){
+					Ejercicio6::run(argv[iParam+1], atoi(argv[iParam+2]));
 				}
 
 			}

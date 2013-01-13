@@ -14,6 +14,7 @@ extern const char* ERROROPENFILE;
 class Global{
 	public:
 		static Mat openImage(const char*  sImageFile);
+		static Mat openImage(const char*  sImageFile, int );
 		
 
 	private:

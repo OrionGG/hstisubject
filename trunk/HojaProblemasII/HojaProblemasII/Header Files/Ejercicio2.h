@@ -8,13 +8,15 @@
 
 #include "..\Header Files\Global.h"
 
-
 using namespace cv;
+using namespace std;
 
 
 class Ejercicio2{
 	public:
-		static void convolveDFT(const Mat& A, const Mat& B, Mat& C);
+		static void Conv2ByFFT(Mat A, Mat B, Mat& C);
+		static bool calculateDFT(Mat image);	
+		static void help();
 		static bool run(const char* filename);
 
 	private:

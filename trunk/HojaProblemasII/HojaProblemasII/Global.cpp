@@ -10,3 +10,12 @@ Mat Global::openImage(const char*  sImageFile){
 	
 	return src;
 }
+
+Mat Global::openImage(const char*  sImageFile, int flags){			
+	
+	Mat src;	
+	
+	src = imread(sImageFile, flags);
+	
+	return src;
+}

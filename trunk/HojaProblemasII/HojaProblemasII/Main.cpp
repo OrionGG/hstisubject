@@ -6,7 +6,7 @@
 
 
 vector<int> getEjerciciosToRun(int argc, char** argv){
-	vector<int> vResult;//(argc);
+	vector<int> vResult;
 	for(int i = 1; i < argc; i++){
 		string sArgv = argv[i];
 		if(sArgv == "Ejercicio1" || sArgv == "Ejercicio2" 

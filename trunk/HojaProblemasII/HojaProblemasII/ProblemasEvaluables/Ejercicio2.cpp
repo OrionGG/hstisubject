@@ -1,66 +1,81 @@
 #include "..\Header Files\Ejercicio2.h"
 
-void Ejercicio2::convolveDFT(const Mat& A, const Mat& B, Mat& C)
+///transform A and B matrix with the fourier transfomation, multiply them
+void Ejercicio2::Conv2ByFFT(const Mat A, const Mat B, Mat& C)
 {
-    // reallocate the output array if needed
-    //C.create(abs(A.rows - B.rows)+1, abs(A.cols - B.cols)+1, A.type());
+	Mat tempA;
+	Mat tempB;
+
+	dft(A, tempA );
+	normalize(tempA, tempA, 1.0, 0.0, NORM_MINMAX , CV_32FC1);
+
+    dft(B, tempB );
+	normalize(tempB, tempB, 1.0, 0.0, NORM_MINMAX , CV_32FC1);	
 	
-    Size dftSize;
-    // compute the size of DFT transform
-	dftSize.width = getOptimalDFTSize(A.cols);
-    dftSize.height = getOptimalDFTSize(A.rows);
-	C.create(dftSize, A.type());
+	C = tempA * tempB;
+    //mulSpectrums(tempA, tempB, tempA, 0 );
 
-	
-
-    // allocate temporary buffers and initialize them with 0's
-    Mat tempA;
-    Mat tempB;
-
-	Mat planesA[] = {Mat_<float>(A), Mat::zeros(dftSize, CV_32F)};
-    merge(planesA, 2, tempA);         // Add to the expanded another plane with zeros
-
-	Mat planesB[] = {Mat_<float>(B), Mat::zeros(dftSize, CV_32F)};
-    merge(planesB, 2, tempB);         // Add to the expanded another plane with zeros
-
-
-    // now transform the padded A & B in-place;
-    // use "nonzeroRows" hint for faster processing
-	dft(tempA, tempA, 0 , dftSize.height);
-    dft(tempB, tempB, 0 , dftSize.height);
-
-    // multiply the spectrums;
-    // the function handles packed spectrum representations well
-    mulSpectrums(tempA, tempB, tempA, 0);
-
-    // transform the product back from the frequency domain.
-    // Even though all the result rows will be non-zero,
-    // we need only the first C.rows of them, and thus we
-    // pass nonzeroRows == C.rows
-    //dft(tempA, tempA, DFT_INVERSE + DFT_SCALE, C.rows);
-	idft(tempA, C,  DFT_INVERSE | DFT_SCALE | DFT_REAL_OUTPUT    );
-
-    // all the temporary buffers will be deallocated automatically
+	idft(C, C);
+	 
 }
 
-
-bool Ejercicio2::run(const char* filename)
-{
+bool Ejercicio2::calculateDFT(Mat image){
 	
 	bool bResult = false;
-	Mat image;
-	image = imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
-	Mat oGaussianDist(image.size(), CV_8U);
-	Mat oOutputArray;
-	randn(oGaussianDist, Scalar(128), Scalar(20));; // Gaussian dist
+	
 
-	convolveDFT(oGaussianDist, image, oOutputArray);
+	int type = image.type();
+
+	if (!( type == CV_32FC1 || type == CV_32FC2 || type == CV_64FC1 || type == CV_64FC2 )){
+		normalize(image, image, 1.0, 0.0, NORM_MINMAX , CV_32FC1);
+	}
+	
+	//Gaussian distribution wiht the same size as the input image and same type
+	Mat oGaussianDist(image.cols, image.rows,image.type());
+	randn(oGaussianDist, Scalar(128), Scalar(20));; // Gaussian dist
+	normalize(oGaussianDist, oGaussianDist, 1.0, 0.0, NORM_MINMAX , CV_32FC1);
+
+	
+	cv::namedWindow( "image", CV_WINDOW_AUTOSIZE);
+	cv::imshow( "image", image);
+
+	Mat oOutputArray;
+
+	Conv2ByFFT(image, oGaussianDist, oOutputArray);
 	
 	cv::namedWindow( "Ejecicio2", CV_WINDOW_AUTOSIZE);
 	cv::imshow( "Ejecicio2", oOutputArray);
 
 	cv::waitKey(0);
 	cv::destroyAllWindows();
+	return bResult;
+}
+
+
+void Ejercicio2::help()
+{
+    cout << "Usage: \n"
+            "   ./HojaProblemasII Ejercicio2 [filepath]\n";
+}
+
+
+
+bool Ejercicio2::run(const char* filename)
+{	
+	bool bResult = false;
+
+	help();
+
+	Mat image = Global::openImage(filename, CV_LOAD_IMAGE_GRAYSCALE);
+
+	if(!image.empty()){
+		bResult = calculateDFT(image);
+	}
+	else
+	{
+		cout << ERROROPENFILE << filename;
+		bResult = false;
+	}
 	
 	return bResult;
 }

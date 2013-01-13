@@ -35,6 +35,7 @@ bool Ejercicio1::applyFilters(Mat image)
 	bool bResult = false;
 	Mat oOutputArrayA;
 
+	//first kernel
 	float mKernelA[] = {1.0/16, 2.0/16, 1.0/16,
 	2.0/16, 4.0/16, 2.0/16,
 	1.0/16, 2.0/16, 1.0/16};
@@ -47,15 +48,13 @@ bool Ejercicio1::applyFilters(Mat image)
 	double elapsed_secsA = double(endA - beginA) / CLOCKS_PER_SEC;
 	cout << elapsed_secsA << endl;
 
+	//second kernel
 	Mat mKernelB1(1, 3, CV_64F);	
 	mKernelB1.row(0).col(0) = ((double) 1/4);
 	mKernelB1.row(0).col(1) = ((double) 2/4);
 	mKernelB1.row(0).col(2) = ((double) 1/4);
-	//mKernelB1.at<double>(0,0) = 1/4;
-	//mKernelB1.at<double>(0,1) = 2/4;
-	//mKernelB1.at<double>(0,2) = 1/4;
 
-	
+	//third kernel
 	Mat mKernelB2(3, 1, CV_64F);
 	mKernelB2.row(0).col(0) = ((double) 1/4);
 	mKernelB2.row(1).col(0) = ((double) 2/4);

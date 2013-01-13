@@ -21,9 +21,32 @@ int Ejercicio4::getMatValue(Mat oMat, int iRow, int iCol){
 bool Ejercicio4::run(const char* filename )
 {
 	bool bResult = false;
-	Mat image;
+
+	help();
+
+	Mat image = Global::openImage(filename, CV_LOAD_IMAGE_GRAYSCALE);
+
+	if(!image.empty()){
+		bResult = applyIntegral(image);
+	}
+	else
+	{
+		cout << ERROROPENFILE << filename;
+		bResult = false;
+	}
 	
-	image = imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
+	return bResult;
+
+}
+
+void Ejercicio4::help()
+{
+    cout << "Usage: \n"
+            "   ./HojaProblemasII Ejercicio4 [filepath]\n";
+}
+
+bool Ejercicio4::applyIntegral(Mat image){
+	bool bResult = false;
 	
 	Mat integralImage;
 	integral(image, integralImage);

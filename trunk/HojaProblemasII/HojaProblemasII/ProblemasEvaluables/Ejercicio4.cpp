@@ -1,7 +1,7 @@
 #include "..\Header Files\Ejercicio4.h"
 
 int Ejercicio4::getMatValue(Mat oMat, int iRow, int iCol){
-	int dResult = 0.0;
+	int dResult = 0;
 	
 	if((0 <= iRow && iRow < oMat.rows) && (0 <= iCol && iCol < oMat.cols)){
 		try
@@ -49,11 +49,17 @@ bool Ejercicio4::applyIntegral(Mat image){
 	bool bResult = false;
 	
 	Mat integralImage;
-	integral(image, integralImage);
+	integral(image, integralImage);	
+	
+	cv::namedWindow( "Original Image", CV_WINDOW_AUTOSIZE );
+	cv::imshow( "Original Image", image );	
+	cv::namedWindow( "Integral Image", CV_WINDOW_AUTOSIZE );
+	cv::imshow( "Integral Image", integralImage );	
+
 	double max;
 	minMaxIdx(image, 0, &max);
    
-	Mat oOutputEdge(image.rows, image.cols, integralImage.type());	
+	Mat oIntegralMean(image.rows, image.cols, image.type());	//image.type()); //
 	int iMinRow = -1;
 	int iMinCol = -1;
 	int iMaxRow = -1;
@@ -61,14 +67,14 @@ bool Ejercicio4::applyIntegral(Mat image){
 
 	int iMaxValue = 0;
 	int iMinValue = 255;
-	for(int iRow = 0; iRow < oOutputEdge.rows-1; iRow++){
-		for(int iCol = 0; iCol < oOutputEdge.cols-1; iCol++){
-			int a = getMatValue(integralImage, iRow, iCol);
-			int b = getMatValue(integralImage, iRow, iCol+2);
-			int c = getMatValue(integralImage, iRow+2, iCol);
-			int d = getMatValue(integralImage, iRow+2, iCol+2);
+	for(int iRow = 1; iRow < oIntegralMean.rows-1; iRow++){
+		for(int iCol = 1; iCol < oIntegralMean.cols-1; iCol++){
+			int a = getMatValue(integralImage, iRow-1, iCol-1);
+			int b = getMatValue(integralImage, iRow-1, iCol+1);
+			int c = getMatValue(integralImage, iRow+1, iCol-1);
+			int d = getMatValue(integralImage, iRow+1, iCol+1);
 
-			int iNewValue = a-b-c+d;
+			int iNewValue = (a-b-c+d)/4;
 			if(iMaxValue < iNewValue){
 				iMaxValue = iNewValue;
 				iMaxRow = iRow;
@@ -80,29 +86,20 @@ bool Ejercicio4::applyIntegral(Mat image){
 				iMinCol = iCol;
 			}
 
-			oOutputEdge.row(iRow).col(iCol) = iNewValue;
+			oIntegralMean.row(iRow).col(iCol) = iNewValue;
 		}
 	}
+	
 
-	oOutputEdge -= iMinValue;
+	Mat oOutputEdge1 = image - oIntegralMean;
+	Mat oOutputEdge2 = oIntegralMean - image;
 
-	double dNormalize = ((double)max/(iMaxValue - iMinValue));
-	
-	oOutputEdge = oOutputEdge * dNormalize;
-	
-	for(int iCol = 0; iCol < oOutputEdge.cols; iCol++){
-		oOutputEdge.row(oOutputEdge.rows-1).col(iCol) = 0;
-	}
 
-	for(int iRow = 0; iRow < oOutputEdge.rows; iRow++){		
-		oOutputEdge.row(iRow).col(oOutputEdge.cols-1) = 0;
-	}
-	
-	cv::namedWindow( "Original Image", CV_WINDOW_AUTOSIZE );
-	cv::imshow( "Original Image", image );	
-	cv::namedWindow( "Integral Image", CV_WINDOW_AUTOSIZE );
-	cv::imshow( "Integral Image", integralImage );
-	
+	Mat oOutputEdge = oOutputEdge1 + oOutputEdge2;
+	//threshold(oOutputEdge, oOutputEdge, 10, 255, THRESH_BINARY );
+	//adaptiveThreshold(oOutputEdge, oOutputEdge, 255, ADAPTIVE_THRESH_MEAN_C , THRESH_BINARY, 7,0);
+	threshold(oOutputEdge, oOutputEdge, 0, 255, THRESH_OTSU | THRESH_BINARY );
+
 	cv::namedWindow( "Edge", CV_WINDOW_AUTOSIZE);
 	cv::imshow( "Edge", oOutputEdge);
 	cv::waitKey(0);

@@ -46,7 +46,7 @@ bool Ejercicio1::applyFilters(Mat image)
 	filter2D(image, oOutputArrayA, image.type() , filterA);	
 	clock_t endA = clock();
 	double elapsed_secsA = double(endA - beginA) / CLOCKS_PER_SEC;
-	cout << elapsed_secsA << endl;
+	cout << "1st filter time: " << elapsed_secsA << endl;
 
 	//second kernel
 	Mat mKernelB1(1, 3, CV_64F);	
@@ -67,7 +67,7 @@ bool Ejercicio1::applyFilters(Mat image)
 	sepFilter2D(image, oOutputArrayB, image.type(), mKernelB1, mKernelB2);	
 	clock_t endB = clock();
 	double elapsed_secsB = double(endB - beginB) / CLOCKS_PER_SEC;
-	cout << elapsed_secsB << endl;
+	cout << "2nd filter time: " << elapsed_secsB << endl;
 
 	cv::namedWindow( "Ejecicio1A", CV_WINDOW_AUTOSIZE);
 	cv::imshow( "Ejecicio1A", oOutputArrayA);

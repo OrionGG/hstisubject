@@ -4,9 +4,15 @@
 #include ".\Header Files\Ejercicio5.h"
 #include ".\Header Files\Ejercicio6.h"
 
+void help()
+{
+    cout << "Usage: \n"
+            "   ./HojaProblemasII [Ejercicio1 [filepath]] [Ejercico2 [filepath]] [Ejercicio4 [filepath]] [Ejercicio5 [filepath]] [Ejercicio6 [filepath] []]\n";
+}
 
 vector<int> getEjerciciosToRun(int argc, char** argv){
 	vector<int> vResult;
+	help();
 	for(int i = 1; i < argc; i++){
 		string sArgv = argv[i];
 		if(sArgv == "Ejercicio1" || sArgv == "Ejercicio2" 

@@ -3,6 +3,8 @@
 bool Ejercicio5::run(const char* filename )
 {
 	bool bResult = false;
+	
+	help();
 	Mat src;
 
 	src = Global::openImage(filename);
@@ -17,6 +19,13 @@ bool Ejercicio5::run(const char* filename )
 	}
 
 	return bResult;
+}
+
+
+void Ejercicio5::help()
+{
+    cout << "Usage: \n"
+            "   ./HojaProblemasII Ejercicio5 [filepath]\n";
 }
 
 bool Ejercicio5::detectLines(Mat oSrc){

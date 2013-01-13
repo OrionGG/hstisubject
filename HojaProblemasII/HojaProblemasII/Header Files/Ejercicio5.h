@@ -18,6 +18,7 @@ class Ejercicio5{
 	public:
 		static bool run(const char* filename);
 		static bool detectLines(Mat oMat);
+		static void help();
 
 	private:
 };

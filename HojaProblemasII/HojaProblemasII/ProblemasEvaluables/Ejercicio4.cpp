@@ -74,23 +74,13 @@ bool Ejercicio4::applyIntegral(Mat image){
 			int c = getMatValue(integralImage, iRow+1, iCol-1);
 			int d = getMatValue(integralImage, iRow+1, iCol+1);
 
+			//we calculate the mean value (divide by 4)
 			int iNewValue = (a-b-c+d)/4;
-			if(iMaxValue < iNewValue){
-				iMaxValue = iNewValue;
-				iMaxRow = iRow;
-				iMaxCol = iCol;
-			}
-			if(iNewValue < iMinValue) {
-				iMinValue = iNewValue;
-				iMinRow = iRow;
-				iMinCol = iCol;
-			}
-
 			oIntegralMean.row(iRow).col(iCol) = iNewValue;
 		}
 	}
 	
-
+	//diference between the original image and the mean value of the integral image
 	Mat oOutputEdge1 = image - oIntegralMean;
 	Mat oOutputEdge2 = oIntegralMean - image;
 

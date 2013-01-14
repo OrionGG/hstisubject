@@ -80,5 +80,7 @@ bool Ejercicio5::detectLines(Mat oSrc){
 
 	waitKey(0);
 	
+	cv::destroyAllWindows();
+	
 	return bResult;
 }
